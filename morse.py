@@ -15,3 +15,16 @@ MORSECODE = {
     ';': '-.-.-.', '=': '-...-', '+': '.-.-.', '-': '-....-', '_': '..--.-',
     '"': '.-..-.', '$': '...-..-', '@': '.--.-.', ' ': '/'
 }
+
+# Define a function to convert English text to Morse code
+def text_to_morse(text):
+    text = text.upper()  # Convert input to uppercase
+    result = []
+    for char in text:
+        if char in MORSECODE:
+            result.append(MORSECODE[char])  # Append Morse code for the character
+        elif char == " ":
+            result.append("/")  # Append space for space in the input
+        else:
+            raise MorseError(f"The '{char}' key doesn't exist in the dictionary")  # Raise an error if the character is not recognized
+    return ' '.join(result)  # Join Morse code representations with spaces between characters
