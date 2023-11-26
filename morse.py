@@ -27,4 +27,25 @@ def text_to_morse(text):
             result.append("/")  # Append space for space in the input
         else:
             raise MorseError(f"The '{char}' key doesn't exist in the dictionary")  # Raise an error if the character is not recognized
-    return ' '.join(result)  # Join Morse code representations with spaces between characters
+    return ' '.join(result)  # Join Morse code representations with spaces between characters 
+
+# Define a function to convert Morse code to English text
+def morse_to_text(morse_code):
+    morse_words = morse_code.split('/')  # Split Morse code by '/'
+    result = []
+    for morse_word in morse_words:
+        morse_chars = morse_word.strip().split()  # Split Morse word into Morse characters
+        for char in morse_chars:
+            # Lookup the Morse code directly in the MORSECODE dictionary
+            for key, value in MORSECODE.items():
+                if value == char:
+                    result.append(key)  # Append English character for the Morse code
+                    break
+            else:
+                # If Morse code is not found in the dictionary
+                if char == "":
+                    result.append(" ")  # Handle space between words
+                else:
+                    raise MorseError(f"The Morse code '{char}' doesn't exist in the dictionary")  # Raise an error if the Morse code is not recognized
+        result.append(" ")  # Add space between words
+    return ''.join(result).strip()  # Remove trailing spaces
