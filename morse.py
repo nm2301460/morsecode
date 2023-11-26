@@ -48,4 +48,22 @@ def morse_to_text(morse_code):
                 else:
                     raise MorseError(f"The Morse code '{char}' doesn't exist in the dictionary")  # Raise an error if the Morse code is not recognized
         result.append(" ")  # Add space between words
-    return ''.join(result).strip()  # Remove trailing spaces
+    return ''.join(result).strip()  # Remove trailing spaces 
+
+# Function for user interaction
+def choosinginput():
+    # Ask the user for their choice
+    choice = input("Press 'english' for English to Morse code or 'morse' for Morse code to English: ").lower()
+
+    # Check the user's choice
+    if choice == "english":
+        string = input("Enter text: ")
+        print(text_to_morse(string))  # Call the function to convert English to Morse code
+    elif choice == "morse":
+        string = input("Enter Morse code (use '.' or '-' , space between characters and '/' between words): ")
+        print(morse_to_text(string))  # Call the function to convert Morse code to English
+    else:
+        print("Choose only between english or morse.")  # Print an error message for an incorrect choice
+
+#calling the function to getting the user's input
+choosinginput()
