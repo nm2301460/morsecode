@@ -1,8 +1,9 @@
-# Define custom exceptions for Morse code conversion errors
+
+# Making a class for the errors
 class MorseError(Exception):
     pass
 
-# Define the Morse code mappings for English letters, numbers, and symbols
+# A dictinary to link between each letter and its morse
 MORSECODE = {
     'A': '.-', 'B': '-...', 'C': '-.-.', 'D': '-..', 'E': '.', 'F': '..-.',
     'G': '--.', 'H': '....', 'I': '..', 'J': '.---', 'K': '-.-', 'L': '.-..', 'M': '--',
@@ -16,9 +17,9 @@ MORSECODE = {
     '"': '.-..-.', '$': '...-..-', '@': '.--.-.', ' ': '/'
 }
 
-# Define a function to convert English text to Morse code
+# Making a function to turn from text to morse
 def text_to_morse(text):
-    text = text.upper()  # Convert input to uppercase
+    text = text.upper()  # converting the text into upper case
     result = []
     for char in text:
         if char in MORSECODE:
@@ -26,29 +27,29 @@ def text_to_morse(text):
         elif char == " ":
             result.append("/")  # Append space for space in the input
         else:
-            raise MorseError(f"The '{char}' key doesn't exist in the dictionary")  # Raise an error if the character is not recognized
-    return ' '.join(result)  # Join Morse code representations with spaces between characters 
+            raise MorseError(f"The '{char}' key doesn't exist in the dictionary")  # Raise an error if the character is not in the dictionary
+    return ' '.join(result)  # Join Morse code representations with spaces between characters
 
-# Define a function to convert Morse code to English text
+# making a function to convert from morse to text
 def morse_to_text(morse_code):
     morse_words = morse_code.split('/')  # Split Morse code by '/'
     result = []
     for morse_word in morse_words:
         morse_chars = morse_word.strip().split()  # Split Morse word into Morse characters
         for char in morse_chars:
-            # Lookup the Morse code directly in the MORSECODE dictionary
+            # comparing the morse to the values
             for key, value in MORSECODE.items():
                 if value == char:
-                    result.append(key)  # Append English character for the Morse code
+                    result.append(key)  # Appending the key "english character" of the value
                     break
             else:
                 # If Morse code is not found in the dictionary
                 if char == "":
                     result.append(" ")  # Handle space between words
                 else:
-                    raise MorseError(f"The Morse code '{char}' doesn't exist in the dictionary")  # Raise an error if the Morse code is not recognized
+                    raise MorseError(f"The Morse code '{char}' is not in the dictionary")  # Raise an error if the Morse code is not in the dictionary
         result.append(" ")  # Add space between words
-    return ''.join(result).strip()  # Remove trailing spaces 
+    return ''.join(result).strip()  # Remove trailing spaces
 
 # Function for user interaction
 def choosinginput():
@@ -67,3 +68,5 @@ def choosinginput():
 
 #calling the function to getting the user's input
 choosinginput()
+
+
