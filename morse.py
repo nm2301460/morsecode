@@ -34,8 +34,8 @@ def text_to_morse(text):
 def morse_to_text(morse_code):
     morse_words = morse_code.split('/')  # Split Morse code by '/'
     result = []
-    for morse_word in morse_words:
-        morse_chars = morse_word.strip().split()  # Split Morse word into Morse characters
+    for morseword in morse_words:
+        morse_chars = morseword.strip().split()  # Split Morse word into Morse characters
         for char in morse_chars:
             # comparing the morse to the values
             for key, value in MORSECODE.items():
