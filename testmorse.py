@@ -1,5 +1,5 @@
 import unittest
-from morsep import text_to_morse, morse_to_text, MorseError
+from morse import text_to_morse, morse_to_text, MorseError
 
 class TestMorseConversion(unittest.TestCase):
 
